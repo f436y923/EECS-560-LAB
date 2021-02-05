@@ -7,11 +7,20 @@ DoubleLinkList::DoubleLinkList()
     length = 0;
 }
 
+DoubleLinkList::~DoubleLinkList()
+{
+    if (head == tail && head == nullptr)
+    {
+        delete head;
+        delete tail;
+    }
+}
+
 bool DoubleLinkList::IsEmpty()
 {
     if (length == 0)
         return true;
-    if (head->getNext() == nullptr)
+    if (head == nullptr)
         return true;
     else
         return false;
@@ -24,9 +33,10 @@ int DoubleLinkList::Length()
 
 void DoubleLinkList::Insert(int value)
 {
-    if (true)
+    if (Find(value))
     {
-        //TODO(除去重复的数字)
+        std::cout << "Cannot insert repeat number!\n";
+        return;
     }
     if (length == 0)
     {
@@ -35,14 +45,14 @@ void DoubleLinkList::Insert(int value)
     }
     else if (length == 1)
     {
-        Node *temp = new Node(value);
+        Node* temp = new Node(value);
         head->setNext(temp);
         temp->setPre(head);
         tail = temp;
     }
     else if (length > 1)
     {
-        Node *temp = new Node(value);
+        Node* temp = new Node(value);
         tail->setNext(temp);
         temp->setPre(tail);
         tail = temp;
@@ -53,14 +63,12 @@ void DoubleLinkList::Insert(int value)
 void DoubleLinkList::ForwardTraverse()
 {
 
-    Node *current = nullptr;
-    // std::cout << "==========================\n";
-    // std::cout << "Enter the ForwardTraverse function!\n";
-    // std::cout << "==========================\n";
+    Node* current = nullptr;
     if (length == 0)
         throw "Cannot ForwardTraverse because The list is empty!\n";
     else if (length != 0)
     {
+        std::cout << "ForwardTraverse: ";
         current = head;
         while (current != tail)
         {
@@ -74,7 +82,7 @@ void DoubleLinkList::ForwardTraverse()
 
 void DoubleLinkList::BackwardTraverse()
 {
-    Node *current = nullptr;
+    Node* current = nullptr;
     if (length == 0)
         throw "Cannot BackwardTraverse because The list is empty!\n";
     else if (length > 0)
@@ -91,95 +99,95 @@ void DoubleLinkList::BackwardTraverse()
 
 bool DoubleLinkList::Find(int value)
 {
-    Node *find = nullptr;
+    Node* find = nullptr;
     // bool isFind = false;
     find = head;
     while (find != nullptr)
     {
         if (find->getValue() == value)
         {
-            std::cout << value << " is found in the list!\n";
-
             return true;
         }
         else
             find = find->getNext();
     }
-    std::cout << value << "is not found in the list!\n";
     return false;
 }
 
 void DoubleLinkList::FindPrev(int value)
 {
-    if (Find(value) == false)
-    {
-        std::cout << "There is no element " << value << " in list. Hence there is no previouselement.";
-    }
-    else
-    {
-        Node *find = nullptr;
-        // bool isFind = false;
-        find = head;
-        while (find != nullptr)
-        {
-            if (find->getValue() == value)
-            {
-                if (find == head)
-                {
-                    std::cout << find->getPre()->getValue() << " is previous None\n ";
-                }
-                else
-                {
-                    std::cout << find->getPre()->getValue() << " is previous " << value << std::endl;
-                }
 
-                break;
+    Node* find = nullptr;
+    find = head;
+    while (find != nullptr)
+    {
+        if (find->getValue() == value)
+        {
+            if (find == head)
+            {
+                std::cout << find->getPre()->getValue() << " is previous None\n ";
             }
             else
-                find = find->getNext();
+            {
+                std::cout << find->getPre()->getValue() << " is previous " << value << std::endl;
+            }
+            break;
         }
+        else
+            find = find->getNext();
     }
 }
 
-void DoubleLinkList::AppendList()
+void DoubleLinkList::AppendList(int value)
 {
+    Insert(value);
 }
 
 void DoubleLinkList::Delete(int value)
 {
-    bool IsFind = false;
-    Node *remove = nullptr;
-    remove = head;
-    while (remove != nullptr)
+    if (!Find(value))
     {
-        if (remove->getValue() == value)
+        std::cout << "Cannot find the value in the list!\n";
+        return;
+    }
+    else
+    {
+        bool IsFind = false;
+        Node* remove = nullptr;
+        remove = head;
+        while (remove != nullptr)
         {
-            if (remove == head)
+            if (remove->getValue() == value)
             {
-                head = head->getNext();
-                head->setPre(nullptr);
-                delete remove;
-            }
-            else if (remove == tail)
-            {
-                tail = tail->getPre();
-                tail->setNext(nullptr);
-                delete remove;
+                if (remove == head)
+                {
+                    head = head->getNext();
+                    head->setPre(nullptr);
+                    delete remove;
+                }
+                else if (remove == tail)
+                {
+                    tail = tail->getPre();
+                    tail->setNext(nullptr);
+                    delete remove;
+                }
+                else
+                {
+                    remove->getPre()->setNext(remove->getNext());
+                    remove->getNext()->setPre(remove->getPre());
+                    delete remove;
+                }
+                IsFind = true;
+                break;
             }
             else
-            {
-                remove->getPre()->setNext(remove->getNext());
-                remove->getNext()->setPre(remove->getPre());
-                delete remove;
-            }
-            IsFind = true;
-            break;
+                remove = remove->getNext();
         }
+        if (IsFind)
+            std::cout << value << " has been deleted from the list!\n";
         else
-            remove = remove->getNext();
+            std::cout << "Cannot find the value in the list!\n";
+        length--;
     }
-    if (IsFind)
-        std::cout << "The " << value << " is remove!\n";
-    else
-        std::cout << "Cannot find the value in the list!\n";
+
 }

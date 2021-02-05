@@ -9,16 +9,16 @@ private:
     int m_value;
 
 public:
-    Node *m_next;
-    Node *m_pre;
+    Node* m_next;
+    Node* m_pre;
     //=====================
     Node(int value);
-    void setNext(Node *next);
-    void setPre(Node *pre);
+    void setNext(Node* next);
+    void setPre(Node* pre);
     void setValue(int _value);
     int getValue();
-    Node *getNext();
-    Node *getPre();
+    Node* getNext();
+    Node* getPre();
 
     ~Node();
 };

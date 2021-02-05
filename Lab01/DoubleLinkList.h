@@ -5,8 +5,8 @@
 class DoubleLinkList
 {
 private:
-    Node *head;
-    Node *tail;
+    Node* head;
+    Node* tail;
     int length;
 
 public:
@@ -19,7 +19,7 @@ public:
     void Delete(int value);
     bool Find(int value);
     void FindPrev(int value);
-    void AppendList();
+    void AppendList(int value);
     void ForwardTraverse();
     void BackwardTraverse();
 };
