@@ -3,13 +3,13 @@
 #include <iostream>
 #include <fstream>
 #include "HashMap.h"
+// #include "LinkedList.h"
 class executive
 {
 private:
 
 public:
     HashMap MyHashMap;
-    //Load the Input.txt
     executive(std::string _filename);
     ~executive();
     void ShowMeun();

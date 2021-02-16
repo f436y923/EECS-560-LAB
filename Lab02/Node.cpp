@@ -1,5 +1,5 @@
 #include "Node.h"
-#include "Node.h"
+
 
 
 
@@ -9,6 +9,7 @@ Node::Node(std::string name, int id)
     m_name = name;
     m_next = nullptr;
 }
+
 
 void Node::SetNext(Node* next)
 {
@@ -42,5 +43,4 @@ Node* Node::getNext()
 
 Node::~Node()
 {
-    m_next = nullptr;
 }

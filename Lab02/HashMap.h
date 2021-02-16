@@ -1,26 +1,22 @@
 #ifndef __HASHMAP_H__
 #define __HASHMAP_H__
+#include "LinkedList.h"
 #include <iostream>
-#include "Node.h"
-class HashMap
-{
+class HashMap {
 private:
-    static const int FIXBUCKET = 5;//TODO(need to change bucketsize to 11)
-    Node* HashTable[FIXBUCKET];//TODO(need to change bucketsize to 11)
+  static const int FIXBUCKET = 11;
+  LinkedList *array;
 
 public:
-    HashMap(/* args */);
-    ~HashMap();
+  HashMap();
+  ~HashMap();
 
-
-    //==========================================
-    int Hashfunction(std::string firstname, int _bucketsize = 5);//TODO(need to change bucketsize to 11)
-    void AddStudent(Node* temp);
-    bool FindStudent(std::string name);
-    bool RemoveStudent(Node* temp);
-    void PrintStudentList();
+  //==========================================
+  int Hashfunction(std::string firstname, int _bucketsize = 11);
+  void AddStudent(std::string name, int id);
+  bool FindStudent(std::string name);
+  void RemoveStudent(std::string name, int id);
+  void PrintStudentList();
 };
-
-
 
 #endif // __HASHMAP_H__
