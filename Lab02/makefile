@@ -1,5 +1,7 @@
 # Lab02: main.o HashMap.o executive.o HashMap.o Node.o
 # 	g++ -std=c++11 -g -Wall main.o HashMap.o executive.o Node.o -o Lab02
+test: Lab02
+	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./Lab02 Input.txt 
 
 Lab02: main.o executive.o HashMap.o LinkedList.o Node.o
 	g++ -std=c++11 -g -Wall main.o executive.o HashMap.o LinkedList.o Node.o -o Lab02
