@@ -1,4 +1,3 @@
-
 Run: Lab03
 	./Lab03 Input.txt
 	
@@ -16,9 +15,6 @@ executive.o: executive.h executive.cpp HashMap.h
 
 HashMap.o: HashMap.h HashMap.cpp Node.h
 	g++ -std=c++11 -g -Wall -c HashMap.cpp
-
-# LinkedList.o:LinkedList.h LinkedList.cpp Node.h
-# 	g++ -std=c++11 -g -Wall -c LinkedList.cpp
 
 Node.o: Node.h Node.cpp
 	g++ -std=c++11 -g -Wall -c Node.cpp
