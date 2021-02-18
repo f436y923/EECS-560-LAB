@@ -12,7 +12,7 @@ public:
   LinkedList();
   ~LinkedList();
   void Insert(std::string name, int id);
-  void Remove(std::string name, int id);
+  bool Remove(std::string name, int id);
   int Hashfunction(std::string name);
   bool Find(std::string name);
   void Remove();

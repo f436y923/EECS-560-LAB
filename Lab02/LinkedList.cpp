@@ -25,7 +25,8 @@ void LinkedList::Insert(std::string name, int id) {
   length++;
 }
 
-void LinkedList::Remove(std::string name, int id) {
+bool LinkedList::Remove(std::string name, int id) {
+  bool remove = false;
   Node *temp = head;
   while (true) {
     if (temp->GetID() == id && temp->GetName() == name) {
@@ -33,17 +34,20 @@ void LinkedList::Remove(std::string name, int id) {
         delete temp;
         head = nullptr;
         tail = nullptr;
+        remove = true;
         break;
       } else {
         if (head->getNext() == tail) {
           if (temp == head) {
             head = tail;
             delete temp;
+            remove = true;
             break;
           } else if (temp == tail) {
             tail = head;
             head->SetNext(nullptr);
             delete temp;
+            remove = true;
             break;
           }
         } else {
@@ -54,11 +58,13 @@ void LinkedList::Remove(std::string name, int id) {
             before->SetNext(tail);
             temp->SetNext(nullptr);
             delete temp;
+            remove = true;
             break;
           } else if (head->getNext() == temp) {
             head->SetNext(temp->getNext());
             temp->SetNext(nullptr);
             delete temp;
+            remove = true;
             break;
           } else {
             Node *before = head;
@@ -67,29 +73,35 @@ void LinkedList::Remove(std::string name, int id) {
             before->SetNext(temp->getNext());
             temp->SetNext(nullptr);
             delete temp;
+            remove = true;
             break;
           }
         }
       }
     } else {
-      temp = temp->getNext();
+      if (temp->getNext() != nullptr) {
+        temp = temp->getNext();
+      } else {
+        break;
+      }
     }
   }
+  return remove;
 }
 
 bool LinkedList::Find(std::string name) {
   Node *find = head;
   bool Find = false;
-  while (true) {
+  while (find != tail) {
     if (find->GetName() == name) {
       Find = true;
       break;
-    } else if (find->GetName() != name) {
-      if (find->getNext() != nullptr)
-        find = find->getNext();
-      else
-        break;
+    } else {
+      find = find->getNext();
     }
+  }
+  if (tail->GetName() == name) {
+    Find = true;
   }
   return Find;
 }

@@ -4,7 +4,7 @@
 #include <iostream>
 class HashMap {
 private:
-  static const int FIXBUCKET = 11;
+  static const int FIXBUCKET = 5;
   LinkedList *array;
 
 public:
@@ -12,7 +12,7 @@ public:
   ~HashMap();
 
   //==========================================
-  int Hashfunction(std::string firstname, int _bucketsize = 11);
+  int Hashfunction(std::string firstname, int _bucketsize = FIXBUCKET);
   void AddStudent(std::string name, int id);
   bool FindStudent(std::string name);
   void RemoveStudent(std::string name, int id);

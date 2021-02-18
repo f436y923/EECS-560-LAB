@@ -34,8 +34,11 @@ bool HashMap::FindStudent(std::string name) {
 void HashMap::RemoveStudent(std::string name, int id) {
   int index = Hashfunction(name);
   if (FindStudent(name)) {
-    array[index].Remove(name, id);
-    std::cout << "Record has been removed from the hash table.\n";
+    if (array[index].Remove(name, id))
+      std::cout << "Record has been removed from the hash table.\n";
+    else {
+      std::cout << "No Records found!\n";
+    }
   } else {
     std::cout << "No Records found!\n";
   }
