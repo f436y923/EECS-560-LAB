@@ -4,7 +4,7 @@
 #include <iostream>
 class HashMap {
 private:
-  static const int FIXBUCKET = 5;
+  static const int FIXBUCKET = 11;
   LinkedList *array;
 
 public:
