@@ -6,6 +6,7 @@
 class Executive {
 private:
   BST mybst;
+  BST mybst_Experiment;
 
 public:
   void PrintMeun();
