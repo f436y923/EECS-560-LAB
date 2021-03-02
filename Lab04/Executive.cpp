@@ -17,9 +17,13 @@ Executive::Executive(string filename) {
     exit(1);
   }
   input.close();
-  // PrintMeun();
+  PrintMeun();
   // mybst.Insert(2);
+  // mybst.Insert(3);
+  // mybst.Insert(4);
   // mybst.Remove(8);
+  // mybst.SpiralLevelOrder();
+  // cout << endl;
   // mybst.LevelOrder();
   // cout << endl;
   // cout << mybst.Successor(9);
@@ -30,7 +34,7 @@ Executive::Executive(string filename) {
   // mybst.RemoveMin();
   // mybst.RemoveMax();
   // mybst.RightSideView();
-  mybst.ExperimentalProfiling();
+  // mybst_Experiment.ExperimentalProfiling();
 }
 
 Executive::~Executive() {}
@@ -110,7 +114,8 @@ void Executive::PrintMeun() {
       mybst.LevelOrder();
       cout << endl;
     } else if (choice == 9) {
-
+      cout << "Spiral Level Order:";
+      mybst.SpiralLevelOrder();
     } else if (choice == 10) {
       cout << "Left SideView: ";
       mybst.LeftSideView();

@@ -22,15 +22,10 @@ void BST::RightSideView(Node *root) {
   RightSideView(root->GetRight());
 }
 
-//============ SpiralLevelOrder ==================
-void BST::SpiralLevelOrder() {
-  // TODO:need to finish
-}
-
 //============ ExperimentalProfiling ==============
 void BST::ExperimentalProfiling() {
 
-  // decleartion
+  // // decleartion
   int m = 100003; // BSTsize
   clock_t startBuildBST, finishBuildBST;
   clock_t startFindMinBST, finishFindMinBST;
@@ -38,21 +33,20 @@ void BST::ExperimentalProfiling() {
   clock_t startDeleteMinBST, finishDeleteMinBST;
   clock_t startDeleteMaxBST, finishDeleteMaxBST;
 
-  // //============ matrix to store some info
+  //============ matrix to store some info
   int index = 1;
-  // string demension[6][6];
-  // demension[0][0] = "Input size";
-  // demension[0][1] = "10,000";
-  // demension[0][2] = "20,000";
-  // demension[0][3] = "30,000";
-  // demension[0][4] = "40,000";
-  // demension[0][5] = "50,000";
-  // demension[1][0] = "Build(s)";
-  // demension[2][0] = "FindMin(s)";
-  // demension[3][0] = "FindMax(s)";
-  // demension[4][0] = "DeleteMin(s)";
-  // demension[5][0] = "DeleteMax(s)";
-
+  string demension[6][6];
+  demension[0][0] = "Input size";
+  demension[0][1] = "10,000";
+  demension[0][2] = "20,000";
+  demension[0][3] = "30,000";
+  demension[0][4] = "40,000";
+  demension[0][5] = "50,000";
+  demension[1][0] = "Build(s)";
+  demension[2][0] = "FindMin(s)";
+  demension[3][0] = "FindMax(s)";
+  demension[4][0] = "DeleteMin(s)";
+  demension[5][0] = "DeleteMax(s)";
   // =============== for loop from 0.1 to 0.5
   for (double i = 0.1; i <= 0.5; i = i + 0.1) {
     int inputSize = m * i;
@@ -61,61 +55,58 @@ void BST::ExperimentalProfiling() {
     int max = 5 * m;
     //======= Step 1 ===================
     startBuildBST = clock();
-    for (int i = 0; i < 1; i++) {
+    for (int i = 0; i < 10000; i++) {
       num = rand() % max + 1;
       Insert(num);
     }
-    // Insert(123);
 
-    // finishBuildBST = clock();
-    // string storeRecordTime = doubleToString(
-    //     (double)(finishBuildBST - startBuildBST) / CLOCKS_PER_SEC);
-    // cout << endl;
-    // demension[1][index] = storeRecordTime;
+    finishBuildBST = clock();
+    string storeRecordTime = doubleToString(
+        (double)(finishBuildBST - startBuildBST) / CLOCKS_PER_SEC);
+    cout << endl;
+    demension[1][index] = storeRecordTime;
 
-    // //======= Step 2 ===================
-    // startFindMinBST = clock();
-    // FindMin();
-    // finishFindMinBST = clock();
-    // string storeRecordTime01 = doubleToString(
-    //     (double)(finishFindMinBST - startFindMinBST) / CLOCKS_PER_SEC);
-    // demension[2][index] = storeRecordTime01;
+    //======= Step 2 ===================
+    startFindMinBST = clock();
+    FindMin();
+    finishFindMinBST = clock();
+    string storeRecordTime01 = doubleToString(
+        (double)(finishFindMinBST - startFindMinBST) / CLOCKS_PER_SEC);
+    demension[2][index] = storeRecordTime01;
 
-    // //======= Step 3 ===================
-    // startFindMaxBST = clock();
-    // FindMax();
-    // finishFindMaxBST = clock();
-    // string storeRecordTime02 = doubleToString(
-    //     (double)(finishFindMaxBST - startFindMaxBST) / CLOCKS_PER_SEC);
-    // demension[3][index] = storeRecordTime02;
+    //======= Step 3 ===================
+    startFindMaxBST = clock();
+    FindMax();
+    finishFindMaxBST = clock();
+    string storeRecordTime02 = doubleToString(
+        (double)(finishFindMaxBST - startFindMaxBST) / CLOCKS_PER_SEC);
+    demension[3][index] = storeRecordTime02;
 
-    // //======= Step 4 ===================
-    // startDeleteMinBST = clock();
-    // RemoveMin();
-    // finishDeleteMinBST = clock();
-    // string storeRecordTime03 = doubleToString(
-    //     (double)(finishDeleteMinBST - startDeleteMinBST) / CLOCKS_PER_SEC);
-    // demension[4][index] = storeRecordTime03;
+    //======= Step 4 ===================
+    startDeleteMinBST = clock();
+    RemoveMin();
+    finishDeleteMinBST = clock();
+    string storeRecordTime03 = doubleToString(
+        (double)(finishDeleteMinBST - startDeleteMinBST) / CLOCKS_PER_SEC);
+    demension[4][index] = storeRecordTime03;
 
-    // //======= Step 5 ===================
-    // startDeleteMaxBST = clock();
-    // RemoveMin();
-    // finishDeleteMaxBST = clock();
-    // string storeRecordTime04 = doubleToString(
-    //     (double)(finishDeleteMaxBST - startDeleteMaxBST) / CLOCKS_PER_SEC);
-    // demension[5][index] = storeRecordTime04;
-
-    // index++;
-    // RemoveTree(m_root);
+    //======= Step 5 ===================
+    startDeleteMaxBST = clock();
+    RemoveMin();
+    finishDeleteMaxBST = clock();
+    string storeRecordTime04 = doubleToString(
+        (double)(finishDeleteMaxBST - startDeleteMaxBST) / CLOCKS_PER_SEC);
+    demension[5][index] = storeRecordTime04;
+    index++;
   }
 
-  // ========  final step(Print) ================
-  // for (int i = 0; i < 6; i++) {
-  //   for (int j = 0; j < 6; j++) {
-  //     cout << demension[i][j] << "    ";
-  //   }
-  //   cout << endl << endl << endl;
-  // }
+  // ============= final step(Print) ==============
+  for (int i = 0; i < 6; i++) {
+    for (int j = 0; j < 6; j++) {
+      cout << demension[i][j] << "    ";
+    }
+    cout << endl << endl << endl;
+  }
 }
 
 //============= Successor ====================
@@ -138,43 +129,45 @@ int BST::Successor(int key) {
 }
 
 //==============Insert================================
-void BST::Insert(int key) { Insert(key, m_root); }
-
-void BST::Insert(int key, Node *root) {
+void BST::Insert(int key) {
   if (m_root == nullptr) {
     m_root = new Node(key);
-  } else if (m_root != nullptr) {
-    if (root->GetValue() > key) { // check left child
-      if (root->GetLeft() == nullptr) {
-        Node *temp = new Node(key);
-        root->SetLeft(temp);
-        temp->SetParent(root);
-        temp = nullptr;
-        delete temp;
-        return;
-      } else if (root->GetLeft() != nullptr) {
-        Insert(key, root->GetLeft());
-      }
-      // end of check left child
-    } else if (root->GetValue() < key) { // check right child
-      if (root->GetRight() == nullptr) {
-        Node *temp = new Node(key);
-        root->SetRight(temp);
-        temp->SetParent(root);
-        temp = nullptr;
-        delete temp;
-        return;
-      } else if (root->GetRight() != nullptr) {
-        Insert(key, root->GetRight());
-      }
-      // end of check right child
-    } else if (root->GetValue() == key) {
+  } else {
+    Insert(key, m_root);
+  }
+}
+
+void BST::Insert(int key, Node *root) {
+  Node *preRoot = nullptr;
+  if (root->GetValue() > key) {
+    if (root->GetLeft() == nullptr) {
       Node *temp = new Node(key);
-      root->SetRight(temp);
       temp->SetParent(root);
+      root->SetLeft(temp);
       temp = nullptr;
       delete temp;
-      return;
+    } else {
+      Insert(key, root->GetLeft());
+    }
+  } else if (root->GetValue() == key) {
+    if (root->GetRight() == nullptr) {
+      Node *temp = new Node(key);
+      temp->SetParent(root);
+      root->SetRight(temp);
+      temp = nullptr;
+      delete temp;
+    } else {
+      Insert(key, root->GetRight());
+    }
+  } else if (root->GetValue() < key) {
+    if (root->GetRight() == nullptr) {
+      Node *temp = new Node(key);
+      temp->SetParent(root);
+      root->SetRight(temp);
+      temp = nullptr;
+      delete temp;
+    } else {
+      Insert(key, root->GetRight());
     }
   }
 }
@@ -241,6 +234,32 @@ void BST::LevelOrder() {
   int i;
   for (i = 1; i <= height; i++)
     LevelOrder(m_root, i);
+}
+
+void BST::SpiralLevelOrder() {
+  int height = GetTreeHight(m_root);
+  int i;
+  bool FLAG = false;
+  for (i = 1; i <= height; i++) {
+    SpiralLevelOrder(m_root, i, FLAG);
+    FLAG = !FLAG;
+  }
+}
+
+void BST::SpiralLevelOrder(Node *root, int level, bool FLAG) {
+  if (root == nullptr)
+    return;
+  if (level == 1)
+    cout << root->GetValue() << " ";
+  else if (level > 1) {
+    if (FLAG == false) {
+      SpiralLevelOrder(root->GetLeft(), level - 1, FLAG);
+      SpiralLevelOrder(root->GetRight(), level - 1, FLAG);
+    } else {
+      SpiralLevelOrder(root->GetRight(), level - 1, FLAG);
+      SpiralLevelOrder(root->GetLeft(), level - 1, FLAG);
+    }
+  }
 }
 
 //============ Remove =============================

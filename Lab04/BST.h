@@ -7,16 +7,16 @@
 class BST {
 private:
   Node *m_root;
-  void Insert(int key, Node *root);       //(Done)
-  void LevelOrder(Node *root, int level); //(Done)
-  int FindMin(Node *root);                //(Done)
-  int FindMax(Node *root);                //(Done)
-  void RemoveMin(Node *root);             //(Done)
-  void RemoveMax(Node *root);             //(Done)
-  Node *Remove(int key, Node *root);      //(Done)
-  void LeftSideView(Node *root);          //(Done)
-  void RightSideView(Node *root);         //(Done)
-
+  void Insert(int key, Node *root);                        //(Done)
+  void LevelOrder(Node *root, int level);                  //(Done)
+  int FindMin(Node *root);                                 //(Done)
+  int FindMax(Node *root);                                 //(Done)
+  void RemoveMin(Node *root);                              //(Done)
+  void RemoveMax(Node *root);                              //(Done)
+  Node *Remove(int key, Node *root);                       //(Done)
+  void LeftSideView(Node *root);                           //(Done)
+  void RightSideView(Node *root);                          //(Done)
+  void SpiralLevelOrder(Node *root, int level, bool FLAG); //(Done)
   //=========================
 
 public:
@@ -31,12 +31,12 @@ public:
   int Successor(int key); //(Done)
   void LeftSideView();    //(Done)
   void RightSideView();   //(Done)
-  void SpiralLevelOrder(); // TODO:need to finsih
-  void ExperimentalProfiling();
+  void SpiralLevelOrder();      // (Done)
+  void ExperimentalProfiling(); //(Done)
   //=============helper method========================
-  int GetTreeHight(Node *temp);  //(Done)
-  Node *FindGivenValue(int key); //(Done)
-  string doubleToString(double temp);
+  int GetTreeHight(Node *temp);       //(Done)
+  Node *FindGivenValue(int key);      //(Done)
+  string doubleToString(double temp); //(Done)
 
   BST();  //(Done)
   ~BST(); //(Done)
